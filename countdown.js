@@ -15,9 +15,14 @@ Countdown.prototype.update_target = function()
     $("#" + this.target_id).val(minutes + ":" + seconds);
 }
 
-Countdown.prototype.set_time = function()
+Countdown.prototype.pause = function()
 {
+    this.paused = true
+}
 
+Countdown.prototype.resume = function()
+{
+    this.resume = true
 }
 
 Countdown.prototype.init = function()
@@ -28,14 +33,11 @@ Countdown.prototype.init = function()
 
 Countdown.prototype.tick = function()
 {
-    if(!this.paused){
+    if(!this.paused && !(this.seconds <= 0 && this.minutes <=0)){
         this.seconds = this.seconds - 1;
         if(this.seconds <= 0 && this.minutes > 0){
             this.minutes--;
             this.seconds = 59;
-        }
-        if(this.seconds <= 0 && this.minutes <=0){
-            this.paused = true;
         }
     }
     this.update_target();
