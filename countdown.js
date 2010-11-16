@@ -17,12 +17,12 @@ Countdown.prototype.update_target = function()
 
 Countdown.prototype.pause = function()
 {
-    this.paused = true
+    this.paused = true;
 }
 
 Countdown.prototype.resume = function()
 {
-    this.resume = true
+    this.paused = false;
 }
 
 Countdown.prototype.init = function()
@@ -55,4 +55,5 @@ Countdown.prototype.reset = function(time)
     this.minutes = parseInt(time_ary[0]);
     this.seconds = parseInt(time_ary[1]);
     this.update_target();
+    this.pause();
 }

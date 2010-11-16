@@ -1,23 +1,48 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html> <head>
 <title>Countdown Demo</title>
-<script src="jquery-1.4.3.min.js" type="text/javascript"></script>
+<script src="js/jquery-1.4.3.min.js" type="text/javascript"></script>
 <script src="countdown.js" type="text/javascript"></script>
 <script type="text/javascript">
 window.onload = function() {
   timer = new Countdown();
   timer.init();
   timer.start();
+  $('#pause_btn').click(function() {
+    timer.pause();
+    //could insert code here to hide pause and show play.
+  });
+  $('#play_btn').click(function() {
+    timer.resume();
+    //could insert code here to hide play and show pause.
+  });
+  $('#reset_btn').click(function() {
+    timer.reset();
+    //could insert code here to show play and hide pause.
+  });
 }
 </script>
+
+<style>
+input{
+  font-size: 30px;
+}
+
+img {
+  margin-top: 5px;
+}
+</style>
 </head>
 
 <body>
 <h1>This is a countdown timer demo</h1>
 
-<input type="text" id="countdown_timer">
+<input type="text" id="countdown_timer" size="6">
+<img id="play_btn" src="images/play.png">
+<img id="pause_btn" src="images/pause.png"><br>
+<button id="reset_btn">Reset Timer</button>
 
 <hr>
 <address></address>
-<!-- hhmts start --> Last modified: Sat Nov 13 14:24:10 CST 2010 <!-- hhmts end -->
+<!-- hhmts start --> Last modified: Sat Nov 13 21:18:23 CST 2010 <!-- hhmts end -->
 </body> </html>
