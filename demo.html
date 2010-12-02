@@ -4,7 +4,14 @@
 <script src="js/jquery-1.4.3.min.js" type="text/javascript"></script>
 <script src="countdown.js" type="text/javascript"></script>
 <script type="text/javascript">
+
 window.onload = function() {
+  function eventDemo(event)
+  {
+    alert(event.type);
+  };
+
+
   timer = new Countdown();
   timer.init();
   timer.start();
@@ -14,13 +21,16 @@ window.onload = function() {
   });
   $('#play_btn').click(function() {
     timer.resume();
-    //could insert code here to hide play and show pause.
+   //could insert code here to hide play and show pause.
   });
   $('#reset_btn').click(function() {
     timer.reset();
     //could insert code here to show play and hide pause.
   });
-}
+  timer.registerHandler('play', {}, eventDemo);
+  timer.registerHandler('pause', {}, eventDemo);
+  timer.registerHandler('stop', {}, eventDemo);
+};
 </script>
 
 <style>
@@ -44,5 +54,5 @@ img {
 
 <hr>
 <address></address>
-<!-- hhmts start --> Last modified: Sat Nov 13 21:18:23 CST 2010 <!-- hhmts end -->
+<!-- hhmts start --> Last modified: Thu Dec  2 08:24:30 MST 2010 <!-- hhmts end -->
 </body> </html>

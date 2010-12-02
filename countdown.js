@@ -5,6 +5,12 @@ function Countdown()
     this.target_id = "countdown_timer";
     this.paused = true;
     this.name = 'timer';
+    this.eventHandlers = {}
+}
+
+Countdown.prototype.target = function()
+{
+    return $("#" + this.target_id);
 }
 
 Countdown.prototype.update_target = function()
@@ -18,11 +24,13 @@ Countdown.prototype.update_target = function()
 Countdown.prototype.pause = function()
 {
     this.paused = true;
+    this.fire('pause');
 }
 
 Countdown.prototype.resume = function()
 {
     this.paused = false;
+    this.fire('play');
 }
 
 Countdown.prototype.init = function()
@@ -51,9 +59,21 @@ Countdown.prototype.start = function()
 
 Countdown.prototype.reset = function(time)
 {
-    time_ary = this.start_time.split(":");
+    if(time == undefined) time = this.start_time;
+    time_ary = time.split(":");
     this.minutes = parseInt(time_ary[0]);
     this.seconds = parseInt(time_ary[1]);
     this.update_target();
     this.pause();
+    this.fire('stop');
+}
+
+Countdown.prototype.registerHandler = function(event, data, handler)
+{
+    this.target().bind(event, data, handler);
+}
+
+Countdown.prototype.fire = function(event)
+{
+    this.target().trigger(event)
 }
