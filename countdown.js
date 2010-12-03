@@ -64,7 +64,7 @@ Countdown.prototype.reset = function(time)
     this.minutes = parseInt(time_ary[0]);
     this.seconds = parseInt(time_ary[1]);
     this.update_target();
-    this.pause();
+    this.paused = true;
     this.fire('stop');
 }
 
