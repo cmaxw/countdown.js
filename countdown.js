@@ -5,7 +5,8 @@ function Countdown()
     this.target_id = "countdown_timer";
     this.paused = true;
     this.name = 'timer';
-    this.eventHandlers = {}
+    this.eventHandlers = {};
+    this.complete = false;
 }
 
 Countdown.prototype.target = function()
@@ -47,6 +48,11 @@ Countdown.prototype.tick = function()
             this.minutes--;
             this.seconds = 59;
         }
+    }else{
+        if(!complete) {
+            this.fire('complete');
+            this.complete = true;
+        }
     }
     this.update_target();
 }
@@ -66,6 +72,7 @@ Countdown.prototype.reset = function(time)
     this.update_target();
     this.paused = true;
     this.fire('stop');
+    this.complete = false;
 }
 
 Countdown.prototype.registerHandler = function(event, data, handler)
