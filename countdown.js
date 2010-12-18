@@ -51,7 +51,7 @@ Countdown.prototype.tick = function()
             this.seconds = 59;
         }
     }else{
-        if(!complete) {
+        if(!this.complete) {
             this.fire('complete');
             this.complete = true;
         }
