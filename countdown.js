@@ -24,8 +24,10 @@ Countdown.prototype.update_target = function()
 
 Countdown.prototype.pause = function()
 {
-    this.paused = true;
-    this.fire('pause');
+    if(!this.paused){
+        this.paused = true;
+        this.fire('pause');
+    }
 }
 
 Countdown.prototype.resume = function()
@@ -70,8 +72,11 @@ Countdown.prototype.reset = function(time)
     this.minutes = parseInt(time_ary[0]);
     this.seconds = parseInt(time_ary[1]);
     this.update_target();
-    this.paused = true;
-    this.fire('stop');
+    if(!this.paused)
+    {
+        this.paused = true;
+        this.fire('stop');
+    }
     this.complete = false;
 }
 
