@@ -63,6 +63,7 @@ Countdown.prototype.start = function()
 {
     this.reset();
     this.paused = false;
+    this.complete = false;
 }
 
 Countdown.prototype.reset = function(time)
